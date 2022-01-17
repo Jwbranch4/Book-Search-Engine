@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -7,16 +7,6 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
-        email
-        bookCount
-        savedBooks {
-          bookId
-          title
-          description
-          authors
-          link
-          image
-        }
       }
     }
   }
@@ -30,32 +20,23 @@ export const ADD_USER = gql`
         _id
         username
         email
-        bookCount
-        savedBooks {
-          bookId
-          title
-          description
-          authors
-          image
-          link
-        }
       }
     }
   }
 `;
 
 export const SAVE_BOOK = gql`
-  mutation saveBook($input: bookInput!) {
+  mutation saveBook($input: SavedBookInput) {
     saveBook(input: $input) {
       _id
       username
-      email
+      bookCount
       savedBooks {
         bookId
-        authors
-        image
-        description
         title
+        authors
+        description
+        image
         link
       }
     }
@@ -67,14 +48,13 @@ export const REMOVE_BOOK = gql`
     removeBook(bookId: $bookId) {
       _id
       username
-      email
       bookCount
       savedBooks {
         bookId
-        authors
-        image
-        description
         title
+        authors
+        description
+        image
         link
       }
     }
