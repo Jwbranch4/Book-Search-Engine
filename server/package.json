@@ -1,6 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "resolutions": {
+    "mini-css-extract-plugin": "2.4.5"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
